@@ -1,0 +1,31 @@
+{
+  "name": "nano-tcp",
+  "version": "1.0.0",
+  "description": "A slim tcp communication protocol",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "author": {
+    "name": "Sven Rogge"
+  },
+  "license": "MIT",
+  "repository": "github:svi3c/nano-tcp",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@types/jest": "^25.2.3",
+    "jest": "^26.0.1",
+    "ts-jest": "^26.0.0",
+    "typescript": "^3.9.3"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node"
+  },
+  "keywords": [
+    "tcp",
+    "messaging",
+    "protocol"
+  ]
+}
