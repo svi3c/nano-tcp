@@ -11,7 +11,8 @@
   "repository": "github:svi3c/nano-tcp",
   "scripts": {
     "build": "tsc",
-    "test": "jest"
+    "test": "jest",
+    "prepublish": "yarn build"
   },
   "devDependencies": {
     "@types/jest": "^25.2.3",

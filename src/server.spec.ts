@@ -60,9 +60,27 @@ describe("NanoServer + NanoClient", () => {
 
   describe("subscribe()", () => {
     it("should register for multicast messages", async () => {
-      expect.assertions(1);
-      await nc.subscribe(1, (m) => expect(m).toEqual({ foo: "bar" }), true);
+      const listener = jest.fn();
+      await nc.subscribe(1, listener, true);
       await ns.push(1, { foo: "bar" });
+      await wait();
+      expect(listener).toHaveBeenCalledWith({ foo: "bar" });
+    });
+
+    it("should return an unsubscribe callback", async () => {
+      const listener = jest.fn();
+      const unsubscribe = await nc.subscribe(1, listener, true);
+
+      await ns.push(1, { foo: "bar" });
+      await wait();
+      await unsubscribe();
+      await ns.push(1, { foo: "bar" });
+      await wait();
+
+      expect(listener).toHaveBeenCalledTimes(1);
     });
   });
 });
+
+const wait = (delay = 3) =>
+  new Promise((resolve) => setTimeout(resolve, delay));
